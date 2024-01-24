@@ -6,3 +6,10 @@
 #key-range {
     align-items: end !important;
 }
+
+@media (max-width: 600px) {
+    #key-range {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+}
