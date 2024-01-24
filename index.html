@@ -11,6 +11,11 @@
     <meta name="keywords"
           content="caesar, cipher, pyscript, javascript, css, html, bootstrap, bootstrap5, bootstrap-icons">
     <meta name="author" content="Zubair Shaikh">
+    <meta property="og:title" content="Caepher"/>
+    <meta property="og:description"
+          content="Caepher is web tool that can encrypt and automatically decrypt Caesar cipher using Chi Square
+          frequency analysis. This tool is built using pyscript and runs Python in your browser"/>
+    <meta property="og:image" content="https://raw.githubusercontent.com/compmonk/caepher/gh-pages/assets/images/caepher.jpeg"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!-- PyScript CSS -->
@@ -85,7 +90,8 @@
                     <input type="number" class="form-control" id="key" value="0" py-change="sync_input_to_range">
                 </div>
                 <div class="col-sm-6">
-                    <input type="range" class="from-control form-range" min="0" max="26" step="1" value="0" id="key-range"
+                    <input type="range" class="from-control form-range" min="0" max="26" step="1" value="0"
+                           id="key-range"
                            py-change="sync_range_to_input">
                 </div>
                 <button type="button" class="btn btn-primary col-sm-3" py-click="decrypt">Decrypt</button>
