@@ -1,14 +1,19 @@
+#decrypt, #encrypt, #about {
+    min-height: 100vh;
+    padding-top: 56px;
+}
+
 .header > h1 {
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-#key-range {
+.key-range {
     align-items: end !important;
 }
 
 @media (max-width: 600px) {
-    #key-range {
+    .key-range {
         padding-top: 30px;
         padding-bottom: 20px;
     }

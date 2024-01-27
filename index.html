@@ -39,12 +39,13 @@
 
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/copy.js" defer></script>
     <script type="py" src="main.py" config="config.json"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
     <div class="container">
-        <a class="navbar-brand" href="#">CAEPHER</a>
+        <a class="navbar-brand" href="#decrypt">CAEPHER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,13 +53,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Decrypt</a>
+                    <a class="nav-link active" aria-current="page" href="#decrypt">Decrypt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Encrypt</a>
+                    <a class="nav-link" href="#encrypt">Encrypt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link " href="#about">About</a>
                 </li>
             </ul>
             <a id="github-link" href="https://github.com/compmonk/caepher" target="_blank" rel="noreferrer">
@@ -76,33 +77,85 @@
 </nav>
 
 <div class="container">
-    <div class="header text-center">
-        <h1>Decrypt Caesar Cipher Text</h1>
-    </div>
-    <form>
-        <div class="mb-3">
-            <label for="text-to-decrypt" class="form-label">Enter Text to Decrypt</label>
-            <textarea class="form-control" id="text-to-decrypt" rows="5"></textarea>
+    <div id="decrypt">
+        <div class="header text-center">
+            <h1>Decrypt Caesar cipher text</h1>
         </div>
-        <div class="container-fluid mb-3">
-            <div class="mb-3 row">
-                <label for="key" class="col-sm-1 col-form-label">Key</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="key" value="0" py-change="sync_input_to_range">
-                </div>
-                <div class="col-sm-6">
-                    <input type="range" class="from-control form-range" min="0" max="25" step="1" value="0"
-                           id="key-range"
-                           py-change="sync_range_to_input">
-                </div>
-                <button type="button" class="btn btn-primary col-sm-3" py-click="decrypt">Decrypt</button>
+        <form>
+            <div class="mb-3">
+                <label for="text-to-decrypt" class="form-label">Enter text to decrypt</label>
+                <textarea class="form-control" id="text-to-decrypt" rows="5"></textarea>
             </div>
-        </div>
-    </form>
+            <div class="container-fluid mb-3">
+                <div class="mb-3 row">
+                    <label for="decrypt-key-input" class="col-sm-2 col-form-label">Key (0 for Auto)</label>
+                    <div class="col-sm-1">
+                        <input type="number" class="form-control" id="decrypt-key-input" value="0"
+                               py-change="sync_input_to_range">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="range" class="from-control form-range key-range" min="0" max="25" step="1"
+                               value="0"
+                               id="decrypt-key-range" py-change="sync_range_to_input">
+                    </div>
+                    <button type="button" class="btn btn-primary col-sm-3" py-click="decrypt">Decrypt</button>
+                </div>
+            </div>
+        </form>
 
-    <div class="mb-3" id="decrypted-text-container">
-        <label for="decrypted-text" class="form-label">Decrypted Text</label>
-        <textarea class="form-control" id="decrypted-text" rows="5" readonly></textarea>
+        <div class="mb-3" id="decrypted-text-container">
+            <label for="decrypted-text" class="form-label">Decrypted text</label>
+            <textarea class="form-control" id="decrypted-text" rows="5" readonly></textarea>
+        </div>
+    </div>
+
+    <div id="encrypt">
+        <div class="header text-center">
+            <h1>Encrypt Caesar cipher text</h1>
+        </div>
+        <form>
+            <div class="mb-3">
+                <label for="text-to-encrypt" class="form-label">Enter text to encrypt</label>
+                <textarea class="form-control" id="text-to-encrypt" rows="5"></textarea>
+            </div>
+            <div class="container-fluid mb-3">
+                <div class="mb-3 row">
+                    <label for="encrypt-key-input" class="col-sm-1 col-form-label">Key</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="encrypt-key-input" value="0"
+                               py-change="sync_input_to_range">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="range" class="from-control form-range key-range" min="0" max="25" step="1"
+                               value="0"
+                               id="encrypt-key-range" py-change="sync_range_to_input">
+                    </div>
+                    <button type="button" class="btn btn-primary col-sm-3" py-click="encrypt">Encrypt</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="mb-3" id="encrypted-text-container">
+            <label for="encrypted-text" class="form-label">Encrypted text</label>
+            <textarea class="form-control" id="encrypted-text" rows="5" readonly></textarea>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="header text-center">
+            <h1>About Caepher</h1>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Caepher</strong>
+                <small class="text-body-secondary">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">Text copied to clipboard !!</div>
+        </div>
     </div>
 </div>
 </body>
